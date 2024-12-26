@@ -3,7 +3,9 @@
 
 # 2. docker run -it -p 8081:8081 --name test-sp test-sp:latest
 
-# 3. docker logs --tail 100 test-sp
+# 3a. docker logs --tail 100 test-sp
+
+# 3b.  ./docker-run.ps1
 ################################################################
 
 FROM ortussolutions/commandbox
@@ -18,7 +20,14 @@ ENV HEALTHCHECK_URI="http://127.0.0.1:${PORT}/healthcheck"
 # Copy application files to root - Uses .dockerignore to ignore files
 COPY ./ ${APP_DIR}/
 
-COPY ./sptest1/bundles /usr/local/lib/serverHome/WEB-INF/bundles
+# Copy your script into the image
+COPY ./sptest1/myscript.sh ${APP_DIR}/
+
+# Make the script executable
+RUN chmod +x ${APP_DIR}/myscript.sh
+
+# Set the entrypoint to your script
+CMD ["/myscript.sh"]
 
 # bypasses Zscaler fake certs into the HTTPS traffic (MO)
 RUN box cfml sslcertificateInstall www.forgebox.io
@@ -30,4 +39,4 @@ RUN cd ${APP_DIR} && box install --production
 RUN ${BUILD_DIR}/util/warmup-server.sh
 
 # Run it
-CMD ${BUILD_DIR}/run.sh
+ENTRYPOINT ${BUILD_DIR}/run.sh

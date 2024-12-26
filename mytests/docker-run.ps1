@@ -4,13 +4,13 @@ $thispath = Get-Location
 
 Set-Location $thispath
 
-Write-Host $thispath
-
+Write-Host " "
+Write-Host "*** $thisPath ***" -f cyan
 Write-Host " "
 
 docker container run --rm `
--p 8801:80 `
---volume "${PWD}:/app" `
+-p 8081:8081 `
+--volume "C:\ColdFusion2023\bundles:/usr/local/lib/serverHome/WEB-INF/bundles" `
 --name test-sp `
 test-sp
 

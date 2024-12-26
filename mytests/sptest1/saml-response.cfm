@@ -6,7 +6,6 @@
     </body>
 </html>
 
-<!---
 <cfset config = {
 	idp = {name = "okta-identityProvider"},
 	sp = {name = "test-SP"},
@@ -15,8 +14,8 @@
 
 <cfdump var='#config#' label='config'>
 
+<!---<cfset InitSAMLAuthRequest(config)>--->
 
-<cfset InitSAMLAuthRequest(config)>
 
 <cfset struct1 = StructNew()> 
 <cfset struct1.idp = StructNew()> 
@@ -26,7 +25,7 @@
 <cfset authreq=XmlParse("#GetSAMLAuthRequest(struct1)#")> 
 <cfdump var="#authreq#">
 
-
+<!---
 <cfset RespStruct = "#ProcessSAMLResponse("okta-identityProvider", "test-SP")#"> 
 <cfdump var="#RespStruct#"> 
 <cfif RespStruct.AUTHENTICATED> 

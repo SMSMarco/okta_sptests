@@ -9,7 +9,7 @@
             "directoryBrowsing":true,
             "hostAlias":"okta.sptest1.com",
             "openBrowser":true,
-            "openBrowserURL":"http://okta.sptest1.com:8081",
+            "openBrowserURL":"http://okta.sptest1.com:8081/saml-response.cfm",
             "rewrites":{
                 "enable":"true"
             },
