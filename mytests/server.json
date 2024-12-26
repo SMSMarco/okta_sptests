@@ -1,0 +1,39 @@
+{
+    "app":{
+        "cfengine":"${CFML_SERVER_ENGINE}"
+    },
+    "name":"sptest1a",
+    "sites":{
+        "sptest1":{
+            "blockCFAdmin":"false",
+            "directoryBrowsing":true,
+            "hostAlias":"okta.sptest1.com",
+            "openBrowser":true,
+            "openBrowserURL":"http://okta.sptest1.com:8081",
+            "rewrites":{
+                "enable":"true"
+            },
+            "scripts":{
+                "onServerInstall":"cfpm install debugger saml"
+            },
+            "webroot":"sptest1"
+        },
+        "sptest2":{
+            "blockCFAdmin":"false",
+            "directoryBrowsing":true,
+            "hostAlias":"okta.sptest2.com",
+            "openBrowserURL":"http://okta.sptest2.com:8081",
+            "rewrites":{
+                "enable":"true"
+            },
+            "webroot":"sptest2"
+        }
+    },
+    "web":{
+        "bindings":{
+            "HTTP":{
+                "listen":"0.0.0.0:8081"
+            }
+        }
+    }
+}
