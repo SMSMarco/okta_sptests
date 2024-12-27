@@ -13,6 +13,7 @@ FROM ortussolutions/commandbox
 # Metadata
 LABEL maintainer="Ortus Solutions <info@ortussolutions.com>"
 LABEL repository="https://github.com/Ortus-Solutions/docker-commandbox"
+LABEL developer="Marco Ortiz"
 
 # ColdBox Healthcheck
 ENV HEALTHCHECK_URI="http://127.0.0.1:${PORT}/healthcheck"
@@ -20,14 +21,11 @@ ENV HEALTHCHECK_URI="http://127.0.0.1:${PORT}/healthcheck"
 # Copy application files to root - Uses .dockerignore to ignore files
 COPY ./ ${APP_DIR}/
 
-# Copy your script into the image
+# Copy the script into the image
 COPY ./sptest1/myscript.sh ${APP_DIR}/
 
 # Make the script executable
 RUN chmod +x ${APP_DIR}/myscript.sh
-
-# Set the entrypoint to your script
-CMD ["/myscript.sh"]
 
 # bypasses Zscaler fake certs into the HTTPS traffic (MO)
 RUN box cfml sslcertificateInstall www.forgebox.io
@@ -38,5 +36,5 @@ RUN cd ${APP_DIR} && box install --production
 # WARM UP THE SERVER
 RUN ${BUILD_DIR}/util/warmup-server.sh
 
-# Run it
-ENTRYPOINT ${BUILD_DIR}/run.sh
+# run scripts
+CMD ["/bin/bash", "-c", "${APP_DIR}/myscript.sh; ${BUILD_DIR}/run.sh"]

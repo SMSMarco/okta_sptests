@@ -5,18 +5,15 @@ $thispath = Get-Location
 Set-Location $thispath
 
 Write-Host " "
-Write-Host "*** $thisPath ***" -f cyan
+Write-Host "=== ColdFusion packages repository ===" -f yellow
 Write-Host " "
 
+# creates volume to packages bundle (hosted on local server)
+# to facilitate downloading and installing of cf packages
 docker container run --rm `
 -p 8081:8081 `
 --volume "C:\ColdFusion2023\bundles:/usr/local/lib/serverHome/WEB-INF/bundles" `
 --name test-sp `
 test-sp
 
-Write-Host " "
-docker ps -a
-Write-Host " "
-
-# start-process http://localhost:4000
-# start-process http://localhost
+#start-process "http://okta.sptest1.com:8081/saml-response.cfm"
