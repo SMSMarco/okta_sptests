@@ -6,14 +6,12 @@
     </body>
 </html>
 
-<!---
 <cfset config = {
 	idp = {name = "okta-identityProvider"},
 	sp = {name = "test-SP"},
 	relaystate = "page"
 }>
 <cfdump var='#config#' label='config'>
-
 
 <cfset struct1 = StructNew()> 
 <cfset struct1.idp = StructNew()> 
@@ -23,9 +21,10 @@
 <cfset authreq=XmlParse("#GetSAMLAuthRequest(struct1)#")> 
 <cfdump var="#authreq#">
 
+<!---
 <cfset InitSAMLAuthRequest(config)>
 
-<cfset RespStruct = "#ProcessSAMLResponse("okta-identityProvider", "test-SP")#"> 
+<cfset RespStruct = ProcessSAMLResponse("okta-identityProvider", "test-SP")> 
 <cfdump var="#RespStruct#"> 
 
 <cfif RespStruct.AUTHENTICATED> 
