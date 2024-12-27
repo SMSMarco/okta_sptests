@@ -5,7 +5,7 @@ $thispath = Get-Location
 Set-Location $thispath
 
 Write-Host " "
-Write-Host "=== ColdFusion packages repository ===" -f yellow
+Write-Host "=== ColdFusion package repository ===" -f yellow
 Write-Host " "
 
 # creates volume to packages bundle (hosted on local server)

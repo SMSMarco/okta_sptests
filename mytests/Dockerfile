@@ -36,5 +36,8 @@ RUN cd ${APP_DIR} && box install --production
 # WARM UP THE SERVER
 RUN ${BUILD_DIR}/util/warmup-server.sh
 
+# Run it
+#CMD ${BUILD_DIR}/run.sh
+
 # run scripts
 CMD ["/bin/bash", "-c", "${APP_DIR}/myscript.sh; ${BUILD_DIR}/run.sh"]
